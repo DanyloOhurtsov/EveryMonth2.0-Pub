@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet" />
+</head>
+<body>
+    <header>
+
+    </header>
+    <div class="container">
+        <div class="inputCon">
+            <div class="line1 line">
+                <div class="water itemCon">
+                    <h2>Вода</h2>
+                    <div class="contentWat content">
+                        <div class="itemInput">
+                            <p>Холодная вода, UAH</p>
+                            <input type="number" class="inputItem" id="cw1" value="0">
+                        </div>
+                        <div class="itemInput">
+                            <p>Абонплата Х/В, UAH</p>
+                            <input type="number" class="inputItem" id="cw2" value="0">
+                        </div>
+                        <div class="itemInput">
+                            <p>Горячая вода, UAH</p>
+                            <input type="number" class="inputItem" id="hw1" value="0">
+                        </div>
+                        <div class="itemInput">
+                            <p>Абонплата Г/В, UAH</p>
+                            <input type="number" class="inputItem" id="hw2" value="0">
+                        </div>
+                        <div class="itemInput">
+                            <p>Водоотведение Г/В, UAH</p>
+                            <input type="number" class="inputItem" id="hw3" value="0">
+                        </div>
+                        <div class="itemInput">
+                            <p>Отопление, UAH</p>
+                            <input type="number" class="inputItem" id="hw4" value="0">
+                        </div>
+                        <div class="itemInput">
+                            <p>Абонплата Отопление, UAH</p>
+                            <input type="number" class="inputItem" id="hw5" value="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="subscript itemCon">
+                    <h2>Подписки</h2>
+                    <div class="contentSub content">
+                        <div class="itemInput">
+                            <p>Megogo, USD</p>
+                            <input type="number" class="inputItem" id="sub1" value="10.99">
+                        </div>
+                        <div class="itemInput">
+                            <p>iCloud, USD</p>
+                            <input type="number" class="inputItem" id="sub2" value="9.99">
+                        </div>
+                        <div class="itemInput">
+                            <p>Netflix, EUR</p>
+                            <input type="number" class="inputItem" id="sub3" value="7.49">
+                        </div>
+                        <div class="itemInput">
+                            <p>YouTue Premium, USD</p>
+                            <input type="number" class="inputItem" id="sub4" value="4.99">
+                        </div>
+                        <div class="itemInput">
+                            <p>1PassWords, USD</p>
+                            <input type="number" class="inputItem" id="sub5" value="3.99">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line2 line">
+                <div class="electricity itemCon">
+                    <h2>Електроенергия</h2>
+                    <div class="contentEle content">
+                        <div class="itemInput">
+                            <p>Електроенергия, UAH</p>
+                            <input type="number" class="inputItem" id="el1" value="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="internet itemCon">
+                    <h2>Интернет</h2>
+                    <div class="contentInt content">
+                        <div class="itemInput">
+                            <p>Квартира, UAH</p>
+                            <input type="number" class="inputItem" id="in1" value="0">
+                        </div>
+                        <div class="itemInput">
+                            <p>Дача, UAH</p>
+                            <input type="number" class="inputItem" id="in2" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="parking itemCon">
+                <h2>Паркинги</h2>
+                <div class="contentPar content">
+                    <div class="itemInput">
+                        <p>Паркинг 1, UAH</p>
+                        <input type="number" class="inputItem" id="pa1" value="1339.78">
+                    </div>
+                    <div class="itemInput">
+                        <p>Паркинг 2, UAH</p>
+                        <input type="number" class="inputItem" id="pa2" value="1301.77">
+                    </div>
+                    <div class="itemInput">
+                        <p>Паркинг 3, UAH</p>
+                        <input type="number" class="inputItem" id="pa3" value="1311.28">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="resultCon">
+            <div class="currencyNow">
+                <select name="" id="selectSourse">
+                    <option value="NBU">NBU</option>
+                    <option value="MONO">MonoBank</option>
+                    <option value="PRIVAT">PrivatBank</option>
+                </select>
+                <input type="text" value="37.4406" id="currencyNow" readonly>
+            </div>
+            <div class="block">
+                <div class="waterResult itemRes">
+                    <h2>Всего за воду</h2>
+                    <div class="itemResult">
+                        <p class="">0</p>
+                    </div>
+                </div>
+                <div class="internetResult itemRes">
+                    <h2>Всего за интернет</h2>
+                    <div class="itemResult">
+                        <p class="">0</p>
+                    </div>
+                </div>
+                <div class="subResult itemRes">
+                    <h2></h2>
+                    <div class="itemResult">
+                        <p class="">0</p>
+                    </div>
+                </div>
+                <div class="parkingResult itemRes">
+                    <h2></h2>
+                    <div class="itemResult">
+                        <p class="">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="totalRes">
+                <h3 class="totalResValue">0</h3>
+            </div>
+        </div>
+    </div>
+    <div class="cont1">
+
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
