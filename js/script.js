@@ -8,7 +8,6 @@
     // ARRAY's
     let inputItemNote = document.querySelectorAll('.inputItem');
     let inputItemArr = Array.prototype.slice.call(inputItemNote);
-    console.log(inputItemArr)
     // LET's values
     let = coldWater = 0,
             coldWater1 = 0,
@@ -80,23 +79,18 @@
     function sum(){
         // WATER
         waterResultValue = coldWater+coldWater1+hotWater+hotWater1+hotWater2+hotWater3+hotWater4;
-        console.log(waterResultValue);
         waterResultText.innerText = waterResultValue.toLocaleString('ru-RU')
         // INTERNET
         internetResultValue = ele+internet1+internet2;
-        console.log(internetResultValue);
         internetResultText.innerText = internetResultValue.toLocaleString('ru-RU')
         // SUBSCRIBE
         subResultValueUSD = sub1+sub2+sub3+sub4+sub5;
-        console.log(subResultValueUSD);
         subResultTextUSD.innerText = subResultValueUSD.toLocaleString('ru-RU')
         // PARKING
         parkingResultValue = parking1+parking2+parking3;
-        console.log(parkingResultValue);
         parkingResultText.innerText = parkingResultValue.toLocaleString('ru-RU')
         // TOTAL
         totalResultValue = waterResultValue+internetResultValue+subResultValueUAH+parkingResultValue
-        console.log(totalResultValue)
         totalResultText.innerHTML = totalResultValue.toLocaleString('ru-RU')
     }
     // GET COURSE
@@ -108,7 +102,10 @@
             arr.USD = result[25];
             ValueCur = arr.USD.rate;
             courseNowText.value = ValueCur;
-            console.log(ValueCur);
+            subResultValueUAH = Number((subResultValueUSD*ValueCur).toFixed(2));
+            subResultTextUAH.innerText = subResultValueUAH.toLocaleString('ru-RU');
+
+            sum()
         }
         if(selectorCur.value == 'MONO'){
             let resMono = await fetch('https://api.monobank.ua/bank/currency');
@@ -117,16 +114,20 @@
             arr.USD = result[0];
             ValueCur = arr.USD.rateSell;
             courseNowText.value = ValueCur;
-            console.log(ValueCur);
+            subResultValueUAH = Number((subResultValueUSD*ValueCur).toFixed(2));
+            subResultTextUAH.innerText = subResultValueUAH.toLocaleString('ru-RU');
+            sum()
         }
         if(selectorCur.value == 'PRIVAT'){
-            let resNBU = await fetch('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11');
-            let data = await resNBU.json();
-            let result = await data;
-            arr.USD = result[0];
-            ValueCur = arr.USD.sale;
-            courseNowText.value = ValueCur;
-            console.log(ValueCur);
+            console.log('Not now! It doesn`t work')
+            // ! Надо посмотреть почему не работает. Возможно причина в блокировке апи в Польше?
+            // let resNBU = await fetch('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11');
+            // let data = await resNBU.json();
+            // let result = await data;
+            // arr.USD = result[0];
+            // ValueCur = arr.USD.sale;
+            // courseNowText.value = ValueCur;
+            // console.log(ValueCur);
         }
     }
     
