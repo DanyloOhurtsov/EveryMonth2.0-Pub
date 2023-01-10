@@ -4,6 +4,7 @@
     let courseNowText = document.querySelector('#currencyNow');
     let arr = {};
     let ValueCur = 0;
+    let USDNum = '840';
 
     // ARRAY's
     let inputItemNote = document.querySelectorAll('.inputItem');
@@ -74,7 +75,7 @@
         parking1 = Number(inputItemArr[15].value)
         parking2 = Number(inputItemArr[16].value)
         parking3 = Number(inputItemArr[17].value)
-    }
+    };
     // SUMMING VALUE
     function sum(){
         // WATER
@@ -92,42 +93,70 @@
         // TOTAL
         totalResultValue = waterResultValue+internetResultValue+subResultValueUAH+parkingResultValue
         totalResultText.innerHTML = totalResultValue.toLocaleString('ru-RU')
-    }
+    };
     // GET COURSE
     async function getCourse(){
+        // NATIONAL BANK OF UKRAINE
         if(selectorCur.value == 'NBU'){
             let resNBU = await fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
             let data = await resNBU.json();
             let result = await data;
-            arr.USD = result[25];
-            ValueCur = arr.USD.rate;
+            let ValueCur = 0;
+            result.forEach(function(item){
+                let itemAr = Object.values(item);
+                let itemNameNum = itemAr[0];
+                let itemCur = itemAr[2];
+                if(itemNameNum == USDNum){
+                    console.log(itemAr);
+                    arr.USD = itemCur;
+                    console.log(itemNameNum);
+                    console.log(arr.USD);
+                    ValueCur = (arr.USD).toFixed(2);
+                }
+            })
+            courseNowText.value = ValueCur;
+            subResultValueUAH = Number((subResultValueUSD*arr.USD).toFixed(2));
+            subResultTextUAH.innerText = subResultValueUAH.toLocaleString('ru-RU');
+
+            sum();
+        }
+        // MONO BANK
+        if(selectorCur.value == 'MONO'){
+            let resMono = await fetch('https://api.monobank.ua/bank/currency');
+            let data = await resMono.json();
+            let result = await data;
+            let ValueCur = 0;
+            result.forEach(function(item){
+                let itemAr = Object.values(item);
+                let itemName = itemAr[0];
+                let itemCur = itemAr[3];
+                if(itemName == USDNum){
+                    arr.USD = itemCur;
+                    console.log(itemName+'USD');
+                    console.log(arr.USD);
+                    ValueCur = (arr.USD).toFixed(2);
+                }
+            })
             courseNowText.value = ValueCur;
             subResultValueUAH = Number((subResultValueUSD*ValueCur).toFixed(2));
             subResultTextUAH.innerText = subResultValueUAH.toLocaleString('ru-RU');
 
             sum()
         }
-        if(selectorCur.value == 'MONO'){
-            let resMono = await fetch('https://api.monobank.ua/bank/currency');
-            let data = await resMono.json();
-            let result = await data;
-            arr.USD = result[0];
-            ValueCur = arr.USD.rateSell;
-            courseNowText.value = ValueCur;
-            subResultValueUAH = Number((subResultValueUSD*ValueCur).toFixed(2));
-            subResultTextUAH.innerText = subResultValueUAH.toLocaleString('ru-RU');
-            sum()
-        }
+        // PRIVAT BANK
         if(selectorCur.value == 'PRIVAT'){
-            console.log('Not now! It doesn`t work')
+            console.log('Not now! It doesn`t work');
+
             // ! Надо посмотреть почему не работает. Возможно причина в блокировке апи в Польше?
             // let resNBU = await fetch('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11');
             // let data = await resNBU.json();
             // let result = await data;
+            // console.log(result)
             // arr.USD = result[0];
             // ValueCur = arr.USD.sale;
             // courseNowText.value = ValueCur;
-            // console.log(ValueCur);
+
+            // sum()
         }
     }
     
